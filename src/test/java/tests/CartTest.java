@@ -10,17 +10,17 @@ public class CartTest extends BaseTest {
     public void openCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        productsPage.clickCart();
+        productsPage.navigationPanel.clickCart();
         assertTrue(cartPage.pageTitleDisplayed());
         assertEquals(cartPage.getTitle(), "Your Cart");
     }
 
     @Test
-    public void checkGoodsInCart() throws InterruptedException {
+    public void checkGoodsInCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.addToCart(goodsName);
-        productsPage.clickCart();
+        productsPage.navigationPanel.clickCart();
 
         assertFalse(cartPage.getProductsNames().isEmpty());
         assertEquals(cartPage.getProductsNames().size(), 1);
