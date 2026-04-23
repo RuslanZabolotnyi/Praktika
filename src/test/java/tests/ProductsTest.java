@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class ProductsTest extends BaseTest {
     List<String> goodsList =
@@ -12,7 +13,7 @@ public class ProductsTest extends BaseTest {
     @Test
     public void checkGoodsAdded() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         assertTrue(productsPage.pageTitleDisplayed());
         assertEquals(productsPage.getGoodsQuantity(), 6);
         productsPage.addToCart();
