@@ -8,7 +8,7 @@ import java.time.Duration;
 public class BasePage {
     WebDriver driver;
     WebDriverWait wait;
-    public static final String BASE_URL = PropertyReader.getProperty("saucedemo.url");
+    public static final String BASE_URL = PropertyReader.getProperty("praktika.url");
     public static final String DATA_TEST_PATTERN = "[data-test='%s']";
     public NavigationPanel navigationPanel;
 
