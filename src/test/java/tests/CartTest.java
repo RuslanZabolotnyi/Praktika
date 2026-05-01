@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 import static user.UserFactory.withAdminPermission;
@@ -7,6 +8,13 @@ import static user.UserFactory.withAdminPermission;
 public class CartTest extends BaseTest {
     final String goodsName = "Test.allTheThings() T-Shirt (Red)";
 
+    @Epic("Интернет-магазин")
+    @Feature("Корзина товаров")
+    @Story("Навигация корзины")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Заболотный Руслан zabolotnyy-90@mail.ru")
+    @TmsLink("Praktika")
+    @Issue("Praktika")
     @Test
     public void openCart() {
         loginPage.open();
@@ -16,6 +24,13 @@ public class CartTest extends BaseTest {
         assertEquals(cartPage.getTitle(), "Your Cart");
     }
 
+    @Epic("Интернет-магазин")
+    @Feature("Корзина товаров")
+    @Story("Добавление товара")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Заболотный Руслан zabolotnyy-90@mail.ru")
+    @TmsLink("Praktika")
+    @Issue("Praktika")
     @Test
     public void checkGoodsInCart() {
         loginPage.open();

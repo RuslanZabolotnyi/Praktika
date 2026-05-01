@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import java.util.List;
 import static org.testng.Assert.assertEquals;
@@ -10,6 +11,13 @@ public class ProductsTest extends BaseTest {
     List<String> goodsList =
             List.of("Test.allTheThings() T-Shirt (Red)", "Sauce Labs Onesie", "Sauce Labs Fleece Jacket");
 
+    @Epic("Интернет-магазин")
+    @Feature("Страница товаров")
+    @Story("Добавление товаров и проверка счётчика корзины")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Заболотный Руслан zabolotnyy-90@mail.ru")
+    @TmsLink("Praktika")
+    @Issue("Praktika")
     @Test
     public void checkGoodsAdded() {
         loginPage.open();

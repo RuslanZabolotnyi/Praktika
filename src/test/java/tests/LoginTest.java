@@ -1,22 +1,38 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import user.User;
+import utils.AllureUtils;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
 
 public class LoginTest extends BaseTest {
-
+    @Epic("Интернет-магазин")
+    @Feature("Страница авторизации пользователя")
+    @Story("Ввод данных пользователя")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Заболотный Руслан zabolotnyy-90@mail.ru")
+    @TmsLink("Praktika")
+    @Issue("Praktika")
     @Test
     public void checkLogin() {
         loginPage.open();
         loginPage.login(withAdminPermission());
 
+        AllureUtils.takeScreenShot(driver);
         assertEquals(productsPage.getTitle(), "Products");
     }
 
+    @Epic("Интернет-магазин")
+    @Feature("Страница авторизации пользователя")
+    @Story("Валидация негативных сценариев входа")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Заболотный Руслан zabolotnyy-90@mail.ru")
+    @TmsLink("Praktika")
+    @Issue("Praktika")
     @Test(dataProvider = "incorrectData")
     public void checkIncorrectLogin(User user, String errorMessage) {
         loginPage.open();
