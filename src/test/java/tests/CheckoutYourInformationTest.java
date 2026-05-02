@@ -5,15 +5,19 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import user.UserData;
+
+import static enums.PageTitle.CHECKOUT_OV;
+import static enums.PageTitle.CHECKOUT_YI;
 import static org.testng.Assert.assertEquals;
 import static user.UserFactory.*;
 
+@Epic("Интернет-магазин")
+@Feature("Оформление заказа")
+@Owner("Заболотный Руслан zabolotnyy-90@mail.ru")
 public class CheckoutYourInformationTest extends BaseTest {
-    @Epic("Интернет-магазин")
-    @Feature("Оформление заказа")
+
     @Story("Ввод данных заказа")
     @Severity(SeverityLevel.BLOCKER)
-    @Owner("Заболотный Руслан zabolotnyy-90@mail.ru")
     @TmsLink("Praktika")
     @Issue("Praktika")
     @Test
@@ -25,7 +29,7 @@ public class CheckoutYourInformationTest extends BaseTest {
         cartPage.clickCheckoutBtn();
 
         soft.assertTrue(checkoutYIPage.isPageTitleDisplayed(), "Checkout page title is missing");
-        soft.assertEquals(checkoutYIPage.getPageTitle(), "Checkout: Your Information");
+        soft.assertEquals(checkoutYIPage.getPageTitle(), CHECKOUT_YI.getDisplayName());
         soft.assertTrue(checkoutYIPage.isCancelBtnDisplayed(), "Checkout cancel button is not visible");
         soft.assertEquals(checkoutYIPage.getCancelBtn(), "Cancel");
         soft.assertTrue(checkoutYIPage.isContinueBtnDisplayed(), "Checkout continue button is not visible");
@@ -40,35 +44,31 @@ public class CheckoutYourInformationTest extends BaseTest {
         soft.assertAll();
     }
 
-    @Epic("Интернет-магазин")
-    @Feature("Оформление заказа")
     @Story("Ввод пользовательских данных")
     @Severity(SeverityLevel.BLOCKER)
-    @Owner("Заболотный Руслан zabolotnyy-90@mail.ru")
     @TmsLink("Praktika")
     @Issue("Praktika")
     @Test
     public void checkCorrectUserData() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         productsPage.navigationPanel.clickCart();
         cartPage.clickCheckoutBtn();
         checkoutYIPage.sendForm(withCorrectUser());
 
-        assertEquals(checkoutYIPage.getPageTitle(), "Checkout: Overview");
+        assertEquals(checkoutYIPage.getPageTitle(), CHECKOUT_OV.getDisplayName());
     }
 
-    @Epic("Интернет-магазин")
-    @Feature("Оформление заказа")
     @Story("Валидация негативных сценариев ввода данных")
     @Severity(SeverityLevel.BLOCKER)
-    @Owner("Заболотный Руслан zabolotnyy-90@mail.ru")
     @TmsLink("Praktika")
     @Issue("Praktika")
     @Test(dataProvider = "incorrectData")
     public void checkIncorrectUserData(UserData userData, String errorMessage) {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         productsPage.navigationPanel.clickCart();
         cartPage.clickCheckoutBtn();
         checkoutYIPage.sendForm(userData);

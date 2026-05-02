@@ -16,8 +16,10 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Открытие сайта")
-    public void open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
+
+        return this;
     }
 
     public void open(final String url) {
@@ -25,10 +27,12 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Авторизуемся с данными пользователя")
-    public void login(User user) {
+    public LoginPage login(User user) {
         fillInLoginField(user.getLogin());
         fillInPassField(user.getPassword());
         driver.findElement(submitButton).click();
+
+        return this;
     }
 
     @Step("Заполняем поле ввода логина")
