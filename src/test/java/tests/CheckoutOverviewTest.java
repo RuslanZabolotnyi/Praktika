@@ -2,6 +2,8 @@ package tests;
 
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
+
+import static enums.PageTitle.CHECKOUT_OV;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.withAdminPermission;
@@ -17,14 +19,15 @@ public class CheckoutOverviewTest extends BaseTest {
     @Issue("Praktika")
     @Test
     public void checkoutGoOverview() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage
+                .open()
+                .login(withAdminPermission());
         productsPage.navigationPanel.clickCart();
         cartPage.clickCheckoutBtn();
         checkoutYIPage.sendForm(withCorrectUser());
 
         assertTrue(checkoutOverview.isPageTitleDisplayed(), "Checkout Overview page title is missing");
-        assertEquals(checkoutOverview.getPageTitle(), "Checkout: Overview");
+        assertEquals(checkoutOverview.getPageTitle(), CHECKOUT_OV.getDisplayName());
         assertTrue(checkoutOverview.isFinishBtnDisplayed(), "Checkout finish button is not visible");
         assertEquals(checkoutOverview.getFinishBtn(), "Finish");
     }
